@@ -205,21 +205,19 @@ ip route 0.0.0.0 0.0.0.0 serial0/0/1
 ```
 NTI-Network-Infrastructure-Final-Project/
 │
-├── Configurations/
-│   ├── Switch0_Config.txt
-│   ├── Switch1_Config.txt
-│   ├── Switch2_Config.txt
-│   ├── Router0_Config.txt
-│   ├── Router1_Config.txt
-│   └── Router2_Config.txt
+├── Configuration Screenshots/
+│   ├── Switch0_Config.png
+│   ├── Switch1_Config.png
+│   ├── Switch2_Config.png
+│   ├── Router0_Config.png
+│   ├── Router1_Config.png
+│   └── Router2_Config.png
 │
-├── Diagrams/
+├── Diagram/
 │   ├── Network_Topology.png
-│   └── VLAN_Diagram.png
 │
-├── Documentation/
-│   ├── Project_Report.pdf
-│   └── Implementation_Guide.md
+├── Project/
+│   ├── NTI_Network_Infrastructure_Project.pkt
 │
 └── README.md
 ```
