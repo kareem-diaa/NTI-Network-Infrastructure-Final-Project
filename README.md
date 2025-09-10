@@ -6,6 +6,8 @@ This repository contains my final project for the Network Infrastructure and Sec
 
 I designed and implemented a complete network infrastructure for a company with 3 floors and 8 departments using Cisco networking equipment. The project demonstrates practical application of various networking protocols and technologies in a simulated enterprise environment.
 
+![Network Topology Diagram](Diagram/Network_Topology.png)
+
 ### Technologies Implemented
 
 - **OSPF, SSH, and Telnet protocols**
