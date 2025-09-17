@@ -1,9 +1,3 @@
-Perfect — I’ll enhance your **README** with the improvements we discussed: cleaner structure, embedded diagram, security hardening, VLAN/IP table, clearer steps, and repository professionalism.
-
-Here’s the upgraded version 👇
-
----
-
 # NTI Network Infrastructure Final Project
 
 This repository contains my final project for the **Network Infrastructure and Security Training** at the **National Telecommunications Institute (NTI)**.
@@ -119,9 +113,3 @@ Special thanks to instructors **Eng. Asmaa Ali** and **Mrs. Hana Montaser** for 
 ---
 
 *Note: Built using **Cisco Packet Tracer**. Configurations follow Cisco IOS standards.*
-
----
-
-⚡ I can also add a **LICENSE file**, `CHANGELOG.md`, and clean config `.txt` files instead of screenshots, so the repo looks even more professional for recruiters/engineers browsing it.
-
-Do you want me to prepare those extra files too and show you how to add them?
