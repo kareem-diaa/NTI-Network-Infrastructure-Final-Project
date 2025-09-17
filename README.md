@@ -1,43 +1,37 @@
+Perfect — I’ll enhance your **README** with the improvements we discussed: cleaner structure, embedded diagram, security hardening, VLAN/IP table, clearer steps, and repository professionalism.
+
+Here’s the upgraded version 👇
+
+---
+
 # NTI Network Infrastructure Final Project
 
-This repository contains my final project for the Network Infrastructure and Security Training at the National Telecommunications Institute (NTI). This project served as a comprehensive review and practical application of key networking concepts I had previously learned, with a focus on implementing enterprise-grade network infrastructure for a multi-department organization.
+This repository contains my final project for the **Network Infrastructure and Security Training** at the **National Telecommunications Institute (NTI)**.
+The project demonstrates enterprise-grade network design, simulating a **3-floor company with 8 departments**, and serves as a practical application of routing, switching, and security concepts.
 
-## Project Overview
+---
 
-I designed and implemented a complete network infrastructure for a company with 3 floors and 8 departments using Cisco networking equipment. The project demonstrates practical application of various networking protocols and technologies in a simulated enterprise environment.
+## 📌 Project Overview
+
+* **120+ hours of training** applied in practice
+* **3 routers, 3 switches, and 8 VLANs**
+* **Enterprise-like topology** with inter-VLAN routing, DHCP, ACLs, and OSPF
+* Designed for **scalability, security, and optimization**
 
 ![Network Topology Diagram](Diagram/Network_Topology.png)
 
-### Technologies Implemented
+---
 
-- **OSPF, SSH, and Telnet protocols**
-- **VLANs & Inter-VLAN routing**
-- **DHCP & network segmentation**
-- **Subnetting & network design**
-- **Static, default, and dynamic routing**
-- **Access Control Lists (ACLs)**
-- **Troubleshooting & optimization**
+## 🛠️ Technologies Implemented
 
-### Core Networking Concepts
+* **Routing & Switching:** OSPF, static/default routing, VLANs, inter-VLAN routing
+* **Security & Management:** SSH, ACLs, DHCP snooping, Telnet (legacy)
+* **Design & Optimization:** Subnetting, DNS, NAT, troubleshooting, case scenarios
 
-- Switching and VLAN configuration
-- IPv4 addressing and subnetting
-- Inter-VLAN routing
-- ACL implementation
-- Remote management (Telnet and SSH)
-- OSPF dynamic routing protocol
-- DHCP services
-- DNS configuration
-- Static and default routing
-- Network Address Translation (NAT)
+---
 
-## Network Design
+## 📊 VLAN & IP Design
 
-The network infrastructure consists of:
-
-- **3 Routers** (R0, R1, R2) handling inter-VLAN routing and connectivity
-- **3 Switches** (S0, S1, S2) providing departmental connectivity
-- **8 VLANs** representing different departments:
 | VLAN | Department | Subnet          | Gateway      |
 | ---- | ---------- | --------------- | ------------ |
 | 10   | Reception  | 192.168.10.0/24 | 192.168.10.1 |
@@ -49,222 +43,85 @@ The network infrastructure consists of:
 | 70   | Admin      | 192.168.70.0/24 | 192.168.70.1 |
 | 80   | IT         | 192.168.80.0/24 | 192.168.80.1 |
 
-## Configuration Steps
+---
 
-### 1. Switch Configuration
+## 🔐 Security Enhancements
 
-#### Switch 0 (S0) Configuration:
-```cisco
-enable
-configure terminal
-vlan 10
-name Reception
-vlan 20
-name Store
-vlan 30
-name Logistics
-exit
-interface range fastethernet0/1-5
-switchport mode access
-switchport access vlan 10
-exit
-interface range fastethernet0/6-10
-switchport mode access
-switchport access vlan 20
-exit
-interface range fastethernet0/11-15
-switchport mode access
-switchport access vlan 30
-exit
-hostname S0
-interface fastethernet0/16
-switchport mode trunk
-exit
-```
+* **SSH only** for remote management (`Telnet` disabled)
+* **Encrypted passwords** with `service password-encryption`
+* **ACLs** restricting access to sensitive VLANs (Finance/HR)
+* **NAT** for external access simulation
+* Prepared for **future firewall integration**
 
-#### Switch 1 (S1) Configuration:
-```cisco
-enable
-configure terminal
-vlan 40
-name Finance
-vlan 50
-name Sales
-vlan 60
-name HR
-exit
-interface range fastethernet0/1-5
-switchport mode access
-switchport access vlan 40
-exit
-interface range fastethernet0/6-10
-switchport mode access
-switchport access vlan 50
-exit
-interface range fastethernet0/11-15
-switchport mode access
-switchport access vlan 60
-exit
-```
+---
 
-#### Switch 2 (S2) Configuration:
-```cisco
-enable
-configure terminal
-vlan 70
-name Admin
-vlan 80
-name IT
-exit
-interface range fastethernet0/1-6
-switchport mode access
-switchport access vlan 70
-exit
-interface range fastethernet0/6-10
-switchport mode access
-switchport access vlan 80
-exit
-```
+## 🚀 Implementation Guide
 
-### 2. Router Configuration
+1. **Physical Layer:** Connect routers, switches, and end devices as per topology
+2. **Switching:** Configure VLANs, assign ports, enable trunking
+3. **Routing:** Configure subinterfaces for inter-VLAN routing, implement OSPF
+4. **DHCP & DNS:** Assign IP addresses dynamically, configure name resolution
+5. **Security:** Apply ACLs, secure VTY lines with SSH, encrypt passwords
+6. **Testing:** Verify using `ping`, `traceroute`, and `show` commands
 
-#### Router 0 (R0) Configuration:
-```cisco
-enable
-configure terminal
-hostname R0
-enable secret admin
-line vty 0
-password admin
-login
-exit
-ip domain name cisco.com
-username admin password admin
-crypto key generate rsa
-1024
-line vty 0
-transport input ssh
-login local
-end
-```
+---
 
-#### Router Subinterface Configuration:
-```cisco
-configure terminal
-interface gigabitethernet0/0.10
-encapsulation dot1Q 10
-ip address 192.168.10.1 255.255.255.0
-no shutdown
-exit
-interface gigabitethernet0/0.20
-encapsulation dot1Q 20
-ip address 192.168.20.1 255.255.255.0
-no shutdown
-exit
-interface gigabitethernet0/0.30
-encapsulation dot1Q 30
-ip address 192.168.30.1 255.255.255.0
-no shutdown
-exit
-```
+## 🧪 Troubleshooting Tips
 
-### 3. DHCP Configuration
+* `show vlan brief` → verify VLAN assignment
+* `show ip int brief` → check IPs and interface status
+* `show run` → confirm configuration
+* `show ip route` → validate routing table
+* `show access-lists` → verify ACL application
 
-#### R0 DHCP Setup:
-```cisco
-configure terminal
-ip dhcp excluded-address 192.168.10.1
-ip dhcp pool ReceptionPool
-network 192.168.10.0 255.255.255.0
-default-router 192.168.10.1
-dns-server 192.168.10.10
-exit
-ip dhcp excluded-address 192.168.20.1
-ip dhcp pool StorePool
-network 192.168.20.0 255.255.255.0
-default-router 192.168.20.1
-dns-server 192.168.20.10
-exit
-ip dhcp excluded-address 192.168.30.1
-ip dhcp pool LogisticsPool
-network 192.168.30.0 255.255.255.0
-default-router 192.168.30.1
-dns-server 192.168.30.10
-exit
-```
+---
 
-### 4. Routing Configuration
+## 📈 Lessons Learned
 
-#### Default Route Configuration:
-```cisco
-configure terminal
-ip route 0.0.0.0 0.0.0.0 serial0/0/0
-ip route 0.0.0.0 0.0.0.0 serial0/0/1
-```
+* Enterprise network design & best practices
+* VLAN segmentation for multi-department setups
+* Router-on-a-stick implementation
+* DHCP in multi-subnet environments
+* Secure remote management (SSH vs Telnet)
+* Importance of scalability & redundancy planning
 
-## Repository Structure
+---
+
+## 🔮 Future Enhancements
+
+* **IPv6 deployment** alongside IPv4
+* **Redundant links & STP** for fault tolerance
+* **QoS policies** to prioritize business-critical apps
+* **Monitoring & SNMP integration**
+* **Firewall / IDS-IPS** for advanced security
+
+---
+
+## 📂 Repository Structure
 
 ```
 NTI-Network-Infrastructure-Final-Project/
 │
-├── Configuration Screenshots/
-│   ├── Switch0_Config.png
-│   ├── Switch1_Config.png
-│   ├── Switch2_Config.png
-│   ├── Router0_Config.png
-│   ├── Router1_Config.png
-│   └── Router2_Config.png
-│
-├── Diagram/
-│   ├── Network_Topology.png
-│
-├── Project/
-│   ├── NTI_Network_Infrastructure_Project.pkt
-│
+├── Configuration_Files/       # Clean configs (future enhancement)
+├── Configuration_Screenshots/ # Visual proofs of configs
+├── Diagram/                   # Network diagrams
+├── Project/                   # Packet Tracer (.pkt) file
 └── README.md
 ```
 
-## Implementation Guide
+---
 
-1. **Start with physical connectivity**: Connect routers and switches according to the network diagram
-2. **Configure switches**: Set up VLANs and assign ports
-3. **Configure routers**: Implement inter-VLAN routing using subinterfaces
-4. **Set up DHCP**: Configure DHCP pools for each VLAN
-5. **Implement routing**: Configure static and dynamic routing protocols
-6. **Test connectivity**: Verify inter-VLAN communication and internet access
-7. **Implement security**: Configure ACLs and secure management access
+## 🙏 Acknowledgments
 
-## Troubleshooting Tips
-
-- Use `show vlan` to verify VLAN configuration on switches
-- Use `show ip interface brief` to check interface status on routers
-- Use `show running-config` to verify current configuration
-- Use `ping` and `traceroute` to test connectivity between networks
-- Check trunk links with `show interface trunk`
-
-## Lessons Learned
-
-This project reinforced my understanding of:
-- Enterprise network design principles
-- VLAN implementation and management
-- Router-on-a-stick configuration for inter-VLAN routing
-- DHCP service deployment in multi-subnet environments
-- Routing protocol selection and implementation
-- Network security best practices
-
-## Future Enhancements
-
-Potential improvements for this network infrastructure:
-- Implementation of IPv6 addressing
-- Redundant links using Spanning Tree Protocol (STP)
-- Quality of Service (QoS) policies for critical traffic
-- Network monitoring and management system
-- Enhanced security with firewall implementation
-
-## Acknowledgments
-
-This project was completed as part of the Network Infrastructure and Security Training at the National Telecommunications Institute (NTI). Special thanks to the instructors and colleagues who provided guidance and support throughout this learning experience.
+This project was completed as part of the **Network Infrastructure & Security Training** at **NTI**.
+Special thanks to instructors **Eng. Asmaa Ali** and **Mrs. Hana Montaser** for their guidance and mentorship.
 
 ---
 
-*Note: This project was implemented using Cisco Packet Tracer simulation software. All configurations are based on Cisco IOS commands.*
+*Note: Built using **Cisco Packet Tracer**. Configurations follow Cisco IOS standards.*
+
+---
+
+⚡ I can also add a **LICENSE file**, `CHANGELOG.md`, and clean config `.txt` files instead of screenshots, so the repo looks even more professional for recruiters/engineers browsing it.
+
+Do you want me to prepare those extra files too and show you how to add them?
