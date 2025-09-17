@@ -38,14 +38,16 @@ The network infrastructure consists of:
 - **3 Routers** (R0, R1, R2) handling inter-VLAN routing and connectivity
 - **3 Switches** (S0, S1, S2) providing departmental connectivity
 - **8 VLANs** representing different departments:
-  - VLAN 10: Reception
-  - VLAN 20: Store
-  - VLAN 30: Logistics
-  - VLAN 40: Finance
-  - VLAN 50: Sales
-  - VLAN 60: HR
-  - VLAN 70: Admin
-  - VLAN 80: IT
+| VLAN | Department | Subnet          | Gateway      |
+| ---- | ---------- | --------------- | ------------ |
+| 10   | Reception  | 192.168.10.0/24 | 192.168.10.1 |
+| 20   | Store      | 192.168.20.0/24 | 192.168.20.1 |
+| 30   | Logistics  | 192.168.30.0/24 | 192.168.30.1 |
+| 40   | Finance    | 192.168.40.0/24 | 192.168.40.1 |
+| 50   | Sales      | 192.168.50.0/24 | 192.168.50.1 |
+| 60   | HR         | 192.168.60.0/24 | 192.168.60.1 |
+| 70   | Admin      | 192.168.70.0/24 | 192.168.70.1 |
+| 80   | IT         | 192.168.80.0/24 | 192.168.80.1 |
 
 ## Configuration Steps
 
